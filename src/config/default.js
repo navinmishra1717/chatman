@@ -6,5 +6,5 @@ module.exports = {
   apiPort: process.env.apiPort || 3018,
   debugLogStream: process.env.debugLogStream || process.stdout,
   infoFile: process.env.infoLogFile || "src/log/server.log",
-  writtenBy: process.env.writtenBy || "abdian"
+  writtenBy: process.env.writtenBy || "abdian",
 };
