@@ -5,7 +5,7 @@ function connectDb(mongoose, config) {
     reconnectInterval: config.db.reconnectInterval,
     poolSize: config.db.poolSize,
     keepAlive: 1,
-    useNewUrlParser: true
+    useNewUrlParser: true,
   });
 }
 

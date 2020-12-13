@@ -5,9 +5,10 @@
  * @param {object} options other options
  */
 
-const successResponse = (res, msg = "", options = {}) => {
+const successResponse = (res, msg = "", data, options = {}) => {
+  let response = {};
   const status = +options.status || 200;
-  res.status(status).json({ success: true, msg: msg });
+  res.status(status).json({ success: true, msg: msg, data: data });
 };
 
 module.exports = successResponse;
