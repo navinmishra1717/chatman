@@ -10,3 +10,4 @@ function infoChecker(req, res, next) {
 }
 
 module.exports = infoChecker;
+// export default infoChecker;

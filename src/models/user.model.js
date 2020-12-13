@@ -6,14 +6,14 @@ const schema = mongoose.Schema;
 const User = new schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  password: { type: String, required: true },
-  roles: [{ type: String, required: true }],
+  // password: { type: String, required: true },
+  // roles: [{ type: String, required: true }],
   isActive: { type: Boolean, required: true, default: false },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },
   deletedAt: { type: Date },
-  deletedBy: { type: schema.Types.ObjectId, ref: "User" }
+  deletedBy: { type: schema.Types.ObjectId, ref: "User" },
 });
 
 // write methods here
