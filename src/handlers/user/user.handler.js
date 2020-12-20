@@ -11,7 +11,8 @@ const Response = require("../../commons/response");
  */
 async function getUsers(req, res, next) {
   try {
-    const users = await userService.get();
+    let query = { isDeleted: false };
+    const users = await userService.get(query);
     log.info("Get users success");
     Response.successResponse(res, "Get users success", users);
   } catch (err) {
@@ -32,7 +33,6 @@ async function createUser(req, res, next) {
     log.info("creating new user");
     user.createdAt = Date.now();
     user.updatedAt = Date.now();
-    console.log(user, "user to create");
     const newUser = await userService.create(user);
     const msg = "user created successfully";
     log.info(msg);
@@ -43,9 +43,77 @@ async function createUser(req, res, next) {
   }
 }
 
+/**
+ * This function updates the user with given id in the system
+ * @param {object} req request object
+ * @param {object} res response object
+ * @param {function} next function to call next middleware
+ */
+
+async function updateUser(req, res, next) {
+  const userId = req.params.id;
+  const updateData = req.body;
+  try {
+    log.info(`updating user with id:${userId}`);
+    const newUser = await userService.update(userId, updateData);
+    Response.successResponse(
+      res,
+      `update user success with id:${userId}`,
+      newUser
+    );
+  } catch (err) {
+    log.error(err);
+    next(err);
+  }
+}
+
+/**
+ *
+ * @param {object} req request object
+ * @param {object} res response object
+ * @param {function} next next function
+ */
+
+async function getOneById(req, res, next) {
+  const id = req.params.id;
+  try {
+    const user = await userService.getOne(id);
+    const msg = "Get user by id success!!";
+    log.info(msg);
+    Response.successResponse(res, msg, user);
+  } catch (err) {
+    log.error(err);
+    next(err);
+  }
+}
+
+/**
+ *
+ * @param {object} req request object
+ * @param {object} res response object
+ * @param {function} next next function
+ */
+
+async function deleteOne(req, res, next) {
+  const userId = req.params.id;
+  try {
+    const user = await userService.getOne(userId);
+    await userService.deleteOne(userId, user);
+    const msg = "Delete user by id success!!";
+    log.info(msg);
+    Response.successResponse(res, msg);
+  } catch (err) {
+    log.error(err);
+    next(err);
+  }
+}
+
 const userHandler = {
-  getUsers: getUsers,
+  getAllUsers: getUsers,
   createUser: createUser,
+  updateUser: updateUser,
+  getOneById: getOneById,
+  deleteOne: deleteOne,
 };
 
 module.exports = userHandler;

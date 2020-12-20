@@ -10,10 +10,12 @@ const User = new schema({
   // roles: [{ type: String, required: true }],
   isActive: { type: Boolean, required: true, default: false },
   createdAt: { type: Date, default: Date.now },
+  // createdBy: { type: schema.Types.ObjectId, ref: "User" },
   updatedAt: { type: Date, default: Date.now },
+  // updatedBy: { type: schema.Types.ObjectId, ref: "User" },
   isDeleted: { type: Boolean, default: false },
   deletedAt: { type: Date },
-  deletedBy: { type: schema.Types.ObjectId, ref: "User" },
+  // deletedBy: { type: schema.Types.ObjectId, ref: "User" },
 });
 
 // write methods here
