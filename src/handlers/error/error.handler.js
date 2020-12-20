@@ -5,7 +5,7 @@ const errorHandler = (err, req, res, next) => {
   log.error(`Error on ${req.method} ${req.url}`, {
     body: req.body,
     params: req.params,
-    query: req.query
+    query: req.query,
   });
   log.debug(err.stack);
   errorResponse(res, err.message, { status: 500 });
