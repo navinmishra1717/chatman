@@ -3,6 +3,7 @@ const { log } = require("../../commons/logger");
 async function getAllMessages(req, res, next) {
   try {
     log.info("This is message handler!!");
+    log.info("Check for git squash");
   } catch (err) {
     next(err);
   }
